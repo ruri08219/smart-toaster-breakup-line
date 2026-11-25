@@ -20,6 +20,8 @@ def main():
     text = ENTRY.strip()
     if not 1 <= len(text) <= MAX_CHARS:
         raise SystemExit(f"entry must be 1-{MAX_CHARS} chars, got {len(text)}")
+    if "\n" in text or "\r" in text:
+        raise SystemExit("entry must be a single line")
     out_dir = os.environ.get("OUTPUT_DIR", "/output")
     os.makedirs(out_dir, exist_ok=True)
     path = os.path.join(out_dir, "entry.txt")
